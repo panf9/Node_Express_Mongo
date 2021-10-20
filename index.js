@@ -2,19 +2,25 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
-const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+
+
+mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser:true})
+
 const BlogPost = require('./models/BlogPost.js')
 
 const app = new express();
 
 app.set('view engine', 'ejs')
 
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-
-
 app.use(express.static('public'));
+app.use(express.json())
+app.use(express.urlencoded())
+
+
+app.listen(4000, ()=>{
+    console.log('El app esta haciendo listening en el puerto 4000');
+})
 
 app.get('/', (req, res)=>{
     //res.sendFile(path.resolve(__dirname, 'pages/index.html'));
@@ -40,17 +46,14 @@ app.get('/post/new', (req, res)=>{
     res.render('create')
 })
 
-app.post('/post/new', (req, res)=>{
-    console.log(req.body)
-    res.render('/')
-})
+// app.post('/post/new', (req, res)=>{
+//     console.log(req.body)
+//     res.redirect('/')
+// })
 
 app.post('/post/store', (req, res)=>{
     BlogPost.create(req.body, (error, blogpost) => {
-        res.render('/')
+        res.redirect('/')
     })
 })
 
-app.listen(4000, ()=>{
-    console.log('El app esta haciendo listening en el puerto 4000');
-})

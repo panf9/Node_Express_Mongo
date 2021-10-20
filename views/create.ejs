@@ -24,45 +24,23 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
                         <div class="my-5">
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="/post/store" method="POST" >
-                                <div class="form-floating">
-                                    <input class="form-control" id="title" name="title" type="text" placeholder="Título" data-sb-validations="required" />
-                                    <label for="name">Título</label>
-                                    <div class="invalid-feedback" data-sb-feedback="name:required">Es necesario un nombre.</div>
-                                </div>
-                                
-                                <div class="form-floating">
-                                    <textarea class="form-control" id="body" name="body" placeholder="Ingrese el contenido aquí..." style="height: 12rem" data-sb-validations="required"></textarea>
-                                    <label for="message">Descripción</label>
-                                    <div class="invalid-feedback" data-sb-feedback="message:required">Se necesita un mensage.</div>
-                                </div>
-                                <br />
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Formulario enviado correctamente!</div>
-                                        Para activar este formulario registrese en:
-                                        <br />
-                                        <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            <form action="/post/store" method="POST">
+                                <div class="control-group">
+                                    <div class="form-group floating-label- group controls">
+                                        <label>Título</label>
+                                        <input type="text" class="form-control" placeholder="Título" id="title" name="title">
                                     </div>
                                 </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error al enviar el mensage!</div></div>
-                                <!-- Submit Button-->
-                                <button class="btn btn-primary text-uppercase disabled" id="sendMenssageButton" type="submit">Enviar</button>
+                                <div class="control-group">
+                                    <div class="form-grupo floating-label-form-group controls">
+                                        <label>Descripción</label>
+                                        <textarea name="body" id="body" rows="5" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button class="btn btn-primary" id="sendMessageButton" >Enviar</button>
+                                </div>
                             </form>
                         </div>
                     </div>
