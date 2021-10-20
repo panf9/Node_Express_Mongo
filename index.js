@@ -2,12 +2,16 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
+const bodyParser = require('body-parser')
+const BlogPost = require('./models/BlogPost.js')
 
 const app = new express();
 
 app.set('view engine', 'ejs')
 
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
 
 app.use(express.static('public'));
@@ -39,6 +43,12 @@ app.get('/post/new', (req, res)=>{
 app.post('/post/new', (req, res)=>{
     console.log(req.body)
     res.render('/')
+})
+
+app.post('/post/store', (req, res)=>{
+    BlogPost.create(req.body, (error, blogpost) => {
+        res.render('/')
+    })
 })
 
 app.listen(4000, ()=>{
