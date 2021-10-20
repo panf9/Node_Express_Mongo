@@ -15,17 +15,17 @@ app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended:true}))
 
 
 app.listen(4000, ()=>{
     console.log('El app esta haciendo listening en el puerto 4000');
 })
 
-app.get('/', (req, res)=>{
-    //res.sendFile(path.resolve(__dirname, 'pages/index.html'));
-    res.render('index')
-})
+// app.get('/', (req, res)=>{
+//     //res.sendFile(path.resolve(__dirname, 'pages/index.html'));
+//     res.render('index')
+// })
 
 app.get('/about', (req, res)=>{
     //res.sendFile(path.resolve(__dirname, 'pages/about.html'));
@@ -56,3 +56,10 @@ app.post('/post/store', async (req, res)=>{
         res.redirect('/')
 })
 
+app.get('/', async (req,res) => {
+    const blogposts = await BlogPost.find({})
+    console.log(blogposts)
+    res.render('index', {
+        blogposts
+    });
+})
