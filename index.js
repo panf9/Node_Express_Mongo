@@ -51,9 +51,8 @@ app.get('/post/new', (req, res)=>{
 //     res.redirect('/')
 // })
 
-app.post('/post/store', (req, res)=>{
-    BlogPost.create(req.body, (error, blogpost) => {
+app.post('/post/store', async (req, res)=>{
+    await BlogPost.create(req.body)
         res.redirect('/')
-    })
 })
 
